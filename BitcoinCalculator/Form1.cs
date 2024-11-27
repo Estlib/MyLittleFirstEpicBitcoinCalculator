@@ -22,13 +22,40 @@ namespace BitcoinCalculator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (currencyselector.SelectedItem.ToString() == "EUR")
+            if (currencyselector.SelectedItem.ToString() == "EUR" || currencyselector.SelectedItem.ToString() == "EEK")
             {
                 resultlabel.Visible = true;
                 tulemuslabel.Visible = true;
                 BitcoinRates newbitcoinrate = GetRates();
                 float result = float.Parse(bitcoinamountinput.Text) * (float)newbitcoinrate.Bpi.EUR.rate_float;
-                resultlabel.Text = $"{result} Bitcoini {newbitcoinrate.Bpi.EUR.code}";
+                if (currencyselector.SelectedItem.ToString() == "EEK")
+                {
+                    result *= (float)(15.6466);
+                    resultlabel.Text = $"{result} Bitcoini eesti kroonides";
+                }
+                else
+                {
+                    resultlabel.Text = $"{result} Bitcoini {newbitcoinrate.Bpi.EUR.code}";
+                }
+            }
+            /*
+             Lisate juurde Dollari, naela ja eesti krooni.
+             */
+            if (currencyselector.SelectedItem.ToString() == "GBP" )
+            {
+                resultlabel.Visible = true;
+                tulemuslabel.Visible = true;
+                BitcoinRates newbitcoinrate = GetRates();
+                float result = float.Parse(bitcoinamountinput.Text) * (float)newbitcoinrate.Bpi.EUR.rate_float;
+                resultlabel.Text = $"{result} Bitcoini {newbitcoinrate.Bpi.GBP.code}";
+            }
+            if (currencyselector.SelectedItem.ToString() == "USD" )
+            {
+                resultlabel.Visible = true;
+                tulemuslabel.Visible = true;
+                BitcoinRates newbitcoinrate = GetRates();
+                float result = float.Parse(bitcoinamountinput.Text) * (float)newbitcoinrate.Bpi.EUR.rate_float;
+                resultlabel.Text = $"{result} Bitcoini {newbitcoinrate.Bpi.GBP.code}";
             }
         }
 
